@@ -1,8 +1,12 @@
-package com.epam.gloodc.pageobject.scenarios;
+package com.epam.gloodc.uitesting.scenarios;
 
+import com.epam.gloodc.uitesting.utilities.ScreenshotUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 import java.util.concurrent.TimeUnit;
@@ -10,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     private static WebDriver driver;
+    protected Logger logger = Logger.getLogger(getClass());
 
     @BeforeClass
     public void setUp(){
@@ -28,6 +33,11 @@ public class BaseTest {
     public void tearDown(){
         if (driver != null)
             driver.quit();
+    }
+
+    @AfterMethod
+    public void takeScreenshots(ITestResult result){
+        ScreenshotUtils.captureScreenshot(driver, result);
     }
 
     protected WebDriver getWebDriver() {

@@ -1,4 +1,4 @@
-package com.epam.gloodc.pageobject.pages;
+package com.epam.gloodc.uitesting.pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;

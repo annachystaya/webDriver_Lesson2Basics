@@ -1,10 +1,8 @@
-package com.epam.gloodc.pageobject.pages;
+package com.epam.gloodc.uitesting.pages;
 
-import com.epam.gloodc.pageobject.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import java.net.URL;
 
 public class LoginPage extends BasePage {
 
@@ -17,10 +15,13 @@ public class LoginPage extends BasePage {
     @FindBy(id = "signIn-button")
     private WebElement loginButton;
 
+    @FindBy (xpath = "//a[contains(@href,'logout')]")
+    private WebElement logoutLink;
+
 
     public LoginPage open(String url) {
         getWebDriver().get(url);
-        return new LoginPage(getWebDriver());
+        return this;
 
     }
 
@@ -47,11 +48,9 @@ public class LoginPage extends BasePage {
 
     }
 
-
-
-
-
-
-
+    public void clickLogoutLink(){
+        waitUntilClickable(logoutLink);
+        logoutLink.click();
+    }
 
 }

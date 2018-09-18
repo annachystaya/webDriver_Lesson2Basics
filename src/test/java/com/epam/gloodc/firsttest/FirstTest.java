@@ -19,9 +19,10 @@ public class FirstTest {
     private WebDriver driver;
     private JavascriptExecutor jsExecutor;
     private static final int implicitTimeout = 15;
-    private String searchQuery = "Black";
+    private String url = "https://test-web1-12.corp.globoforce.com/microsites/t/home?client=testclient5015";
     private String username="adam_admin";
-    private String password="adam_admin1";
+    private String password="password1";
+    private String searchQuery = "Black";
 
     @Parameters({"browser"})
     @Test
@@ -40,7 +41,7 @@ public class FirstTest {
     @Test(description = "Login Test",dependsOnMethods = {"startDriver"})
     public void Login(){
         System.out.println("Login Test is started");
-        driver.navigate().to("https://test-web1-12.corp.globoforce.com/microsites/t/home?client=testclient5011");
+        driver.navigate().to(url);
         //
         WebElement usernameField = waitElementPresent(By.name("username"));
         WebElement passwordField = waitElementPresent(By.name("password"));
@@ -59,7 +60,7 @@ public class FirstTest {
         System.out.println("Open EC3 Store Test is started");
         WebElement redeemTab = waitElementPresent(By.xpath("//a[contains(text(),'Redeem') and @target='_self']"));
         waitElementAndClick(redeemTab).click();
-        Assert.assertEquals(driver.getTitle(), "The Store", "Incorrect Store title");
+        Assert.assertEquals(driver.getTitle(), "Globostore", "Incorrect Store title");
         System.out.println("Open EC3 Store Test is finished");
     }
 

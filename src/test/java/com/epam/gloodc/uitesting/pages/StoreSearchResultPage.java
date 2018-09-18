@@ -1,10 +1,8 @@
-package com.epam.gloodc.pageobject.pages;
+package com.epam.gloodc.uitesting.pages;
 
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StoreSearchResultPage extends BasePage{
 
@@ -16,6 +14,9 @@ public class StoreSearchResultPage extends BasePage{
 
     @FindBy(xpath = "//button[contains(@class,'ec-search-form-btn-submit')]")
     private WebElement searchButton;
+
+    @FindBy (xpath = "//span[@class='applicationLink-content' and @title='Globostore']")
+    private WebElement globostoreAppLink;
 
     public StoreSearchResultPage (WebDriver driver) { super(driver);}
 
@@ -42,5 +43,10 @@ public class StoreSearchResultPage extends BasePage{
         return this;
     }
 
+    public StoreFrontPage clickGlobostoreAppLink(){
+        waitUntilClickable(globostoreAppLink);
+        globostoreAppLink.click();
+        return new StoreFrontPage(getWebDriver());
+    }
 
 }
